@@ -1,0 +1,151 @@
+/* Workspace.css - Cinematic Glassmorphism */
+.workspace-container {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: #e2e8f0;
+}
+
+.workspace-loading { display: flex; justify-content: center; align-items: center; height: 100vh; }
+.workspace-spinner { width: 50px; height: 50px; border: 3px solid rgba(56, 189, 248, 0.2); border-top-color: #38bdf8; border-radius: 50%; animation: spin 1s infinite linear; }
+
+.workspace-header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 20px;
+}
+
+.workspace-header h2 {
+  font-size: 2.5rem; margin: 0 0 10px 0; color: #fff;
+}
+.workspace-header h2 span {
+  background: linear-gradient(135deg, #38bdf8, #8b5cf6); -webkit-background-clip: text; color: transparent;
+}
+
+.participants-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255, 255, 255, 0.05); padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.95rem; color: #94a3b8;
+}
+.participants-badge strong { color: #38bdf8; }
+
+.workspace-layout {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 30px;
+}
+
+/* Video Section */
+.workspace-video-section {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.video-header {
+  padding: 20px 25px;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.video-header h3 {
+  margin: 0; display: flex; align-items: center; gap: 10px; color: #fff; font-size: 1.1rem;
+}
+
+.live-dot {
+  width: 10px; height: 10px; background: #ef4444; border-radius: 50%;
+  box-shadow: 0 0 10px #ef4444; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } 100% { opacity: 1; transform: scale(1); } }
+
+.meeting-time { font-size: 0.85rem; color: #94a3b8; background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 10px; }
+
+.video-frame-container {
+  height: 600px;
+  background: #000;
+  position: relative;
+}
+
+.no-video {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #64748b; padding: 40px; text-align: center;
+}
+.no-vid-icon { font-size: 4rem; margin-bottom: 15px; opacity: 0.5; }
+
+/* Sidebar */
+.workspace-sidebar {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.workspace-sidebar h3 { margin: 0 0 20px 0; color: #38bdf8; display: flex; align-items: center; gap: 10px; }
+
+.milestones-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;
+}
+
+.no-milestones { color: #64748b; font-style: italic; font-size: 0.9rem; text-align: center; margin-top: 40px; }
+
+.milestone-item {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.3s;
+}
+
+.milestone-item:hover { border-color: rgba(56, 189, 248, 0.3); transform: translateX(5px); }
+.milestone-item.completed { opacity: 0.5; }
+.milestone-item.completed .milestone-title { text-decoration: line-through; color: #64748b; }
+
+.milestone-title { color: #e2e8f0; font-size: 0.95rem; line-height: 1.4; }
+
+/* Checkbox styling */
+.checkbox-container {
+  display: block; position: relative; padding-left: 25px; cursor: pointer; font-size: 22px; user-select: none;
+}
+.checkbox-container input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+.checkmark {
+  position: absolute; top: -10px; left: 0; height: 20px; width: 20px;
+  background-color: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px;
+}
+.checkbox-container:hover input ~ .checkmark { border-color: #38bdf8; }
+.checkbox-container input:checked ~ .checkmark { background-color: #38bdf8; border-color: #38bdf8; }
+.checkmark:after { content: ""; position: absolute; display: none; }
+.checkbox-container input:checked ~ .checkmark:after { display: block; }
+.checkbox-container .checkmark:after {
+  left: 6px; top: 2px; width: 5px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+
+.add-milestone-form {
+  display: flex; gap: 10px;
+}
+.add-milestone-form input {
+  flex-grow: 1; padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: white; font-family: inherit;
+}
+.add-milestone-form input:focus { outline: none; border-color: #38bdf8; }
+.add-milestone-form button {
+  width: 45px; height: 45px; border-radius: 8px; border: none; background: #38bdf8; color: #000; font-size: 1.5rem; font-weight: bold; cursor: pointer; transition: background 0.3s;
+}
+.add-milestone-form button:hover:not(:disabled) { background: #0ea5e9; }
+.add-milestone-form button:disabled { background: rgba(255,255,255,0.1); cursor: not-allowed; color: #64748b; }
+
+@media (max-width: 1024px) {
+  .workspace-layout { grid-template-columns: 1fr; }
+  .video-frame-container { height: 400px; }
+}

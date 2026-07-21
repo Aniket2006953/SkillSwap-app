@@ -1,0 +1,729 @@
+/* ============================================
+   SKILLBARTER NAVBAR - ULTRA-MODERN DESIGN
+   Design System: Navy (#1B263B) + Emerald (#1B4332) + Orange (#FB8500)
+   ============================================ */
+
+:root {
+    --navy-primary: #1B263B;
+    --emerald-primary: #1B4332;
+    --orange-accent: #FB8500;
+    --orange-light: #FFB84D;
+    --white-pure: #FFFFFF;
+    --font-primary: 'Inter', 'Roboto', 'Montserrat', -apple-system, sans-serif;
+}
+
+/* ============================================
+   NAVBAR CONTAINER - Proper Proportions
+   ============================================ */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    max-width: 100%;
+    background: linear-gradient(135deg,
+            rgba(27, 38, 59, 0.95) 0%,
+            rgba(27, 67, 50, 0.92) 100%);
+    backdrop-filter: blur(25px) saturate(200%);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    border-bottom: 1px solid transparent;
+    border-image-source: linear-gradient(90deg,
+            transparent,
+            rgba(251, 133, 0, 0.4),
+            rgba(27, 67, 50, 0.4),
+            rgba(251, 133, 0, 0.4),
+            transparent);
+    border-image-slice: 1;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 80px rgba(251, 133, 0, 0.1) inset;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    font-family: var(--font-primary);
+}
+
+/* Animated Background Gradient */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+            rgba(251, 133, 0, 0.08) 0%,
+            transparent 50%);
+    animation: rotateBackground 25s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes rotateBackground {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Subtle Top Highlight */
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(251, 133, 0, 0.7),
+            rgba(255, 184, 77, 0.7),
+            rgba(251, 133, 0, 0.7),
+            transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   LOGO SECTION - Proper Ratio (20% width)
+   ============================================ */
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    padding: 0.5rem 0.75rem;
+    border-radius: 16px;
+    flex: 0 0 auto;
+    min-width: 180px;
+}
+
+.logo-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--orange-accent), var(--orange-light));
+    -webkit-mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
+    mask: linear-gradient(#fff, #fff) content-box, linear-gradient(#fff, #fff);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.logo-container:hover::before {
+    opacity: 1;
+}
+
+.logo-container:hover {
+    transform: scale(1.05) translateY(-2px);
+    background: rgba(251, 133, 0, 0.08);
+}
+
+/* Premium Logo Image with 3D Effect */
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    object-fit: cover;
+    box-shadow:
+        0 8px 20px rgba(251, 133, 0, 0.5),
+        0 0 40px rgba(251, 133, 0, 0.25) inset;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid rgba(251, 133, 0, 0.4);
+    position: relative;
+    filter: brightness(1.1);
+}
+
+.logo-container:hover .logo {
+    transform: rotate(10deg) scale(1.08);
+    box-shadow:
+        0 12px 35px rgba(251, 133, 0, 0.8),
+        0 0 60px rgba(251, 133, 0, 0.4) inset;
+    border-color: var(--orange-accent);
+}
+
+/* Ultra-Premium App Name with Advanced Gradient */
+.app-name {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg,
+            var(--orange-accent) 0%,
+            var(--orange-light) 30%,
+            #FFD700 50%,
+            var(--orange-light) 70%,
+            var(--orange-accent) 100%);
+    background-size: 300% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ultraGradient 4s ease infinite;
+    position: relative;
+    filter: drop-shadow(0 0 20px rgba(251, 133, 0, 0.5));
+}
+
+@keyframes ultraGradient {
+
+    0%,
+    100% {
+        background-position: 0% center;
+        filter: drop-shadow(0 0 20px rgba(251, 133, 0, 0.5));
+    }
+
+    50% {
+        background-position: 100% center;
+        filter: drop-shadow(0 0 30px rgba(255, 184, 77, 0.6));
+    }
+}
+
+/* ============================================
+   NAVIGATION LINKS - Proper Ratio (60% width)
+   ============================================ */
+
+.nav-links {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    max-width: 60%;
+    margin-left: auto;
+}
+
+/* Ultra-Premium Link Styles with Morphing Effects */
+.nav-links a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+/* Animated Gradient Background on Hover */
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(251, 133, 0, 0.2), rgba(27, 67, 50, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+}
+
+/* Bottom Glow Effect */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--orange-accent), var(--orange-light), var(--orange-accent), transparent);
+    transform: translateX(-50%);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: blur(2px);
+    box-shadow: 0 0 15px var(--orange-accent);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Enhanced Hover State with Multiple Effects */
+.nav-links a:hover {
+    color: var(--white-pure);
+    background: rgba(251, 133, 0, 0.18);
+    border-color: rgba(251, 133, 0, 0.5);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow:
+        0 8px 25px rgba(251, 133, 0, 0.35),
+        0 0 40px rgba(251, 133, 0, 0.2) inset;
+    text-shadow: 0 0 20px rgba(251, 133, 0, 0.8);
+}
+
+.nav-links a:hover::before {
+    opacity: 1;
+}
+
+/* Active Link with Pulsing Animation */
+.nav-links a.active {
+    color: var(--white-pure);
+    background: linear-gradient(135deg, rgba(251, 133, 0, 0.3), rgba(255, 184, 77, 0.25));
+    border-color: rgba(251, 133, 0, 0.7);
+    box-shadow:
+        0 0 30px rgba(251, 133, 0, 0.5),
+        0 0 60px rgba(251, 133, 0, 0.25) inset;
+    animation: activePulse 2s ease-in-out infinite;
+}
+
+@keyframes activePulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 0 30px rgba(251, 133, 0, 0.5),
+            0 0 60px rgba(251, 133, 0, 0.25) inset;
+    }
+
+    50% {
+        box-shadow:
+            0 0 40px rgba(251, 133, 0, 0.7),
+            0 0 80px rgba(251, 133, 0, 0.35) inset;
+    }
+}
+
+/* ============================================
+   CTA BUTTONS (Login/Register) - Proper Ratio
+   ============================================ */
+
+.nav-links a:last-child,
+.nav-links a:nth-last-child(2) {
+    background: linear-gradient(135deg,
+            rgba(251, 133, 0, 0.4),
+            rgba(255, 184, 77, 0.35));
+    border: 2px solid rgba(251, 133, 0, 0.6);
+    padding: 0.75rem 1.75rem;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(251, 133, 0, 0.4);
+}
+
+.nav-links a:last-child::before,
+.nav-links a:nth-last-child(2)::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.3) 50%,
+            transparent 70%);
+    animation: buttonShimmer 3s linear infinite;
+}
+
+@keyframes buttonShimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.nav-links a:last-child:hover,
+.nav-links a:nth-last-child(2):hover {
+    background: linear-gradient(135deg,
+            var(--orange-accent),
+            var(--orange-light));
+    border-color: var(--orange-light);
+    box-shadow:
+        0 12px 40px rgba(251, 133, 0, 0.6),
+        0 0 60px rgba(251, 133, 0, 0.3) inset;
+    transform: translateY(-4px) scale(1.05);
+    color: var(--navy-primary);
+}
+
+/* Special "Get Started" button */
+.nav-links a:last-child {
+    background: linear-gradient(135deg, var(--orange-accent), var(--orange-light));
+    color: var(--navy-primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-links a:last-child:hover {
+    background: linear-gradient(135deg, var(--orange-light), var(--orange-accent));
+    color: var(--navy-primary);
+}
+
+/* Ripple Effect on Click */
+.nav-links a:active {
+    transform: translateY(-1px) scale(0.98);
+    transition: all 0.1s ease;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Proper Breakpoints
+   ============================================ */
+
+/* Large Desktop (1400px+) */
+@media (min-width: 1400px) {
+    .navbar {
+        padding: 1.2rem 8%;
+    }
+
+    .nav-links {
+        max-width: 55%;
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        padding: 0.85rem 1.75rem;
+        font-size: 1rem;
+    }
+
+    .app-name {
+        font-size: 2rem;
+    }
+}
+
+/* Desktop (1200px - 1399px) */
+@media (max-width: 1399px) and (min-width: 1200px) {
+    .navbar {
+        padding: 1.1rem 6%;
+    }
+
+    .nav-links {
+        max-width: 58%;
+        gap: 0.7rem;
+    }
+
+    .nav-links a {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Medium Desktop (1024px - 1199px) */
+@media (max-width: 1199px) and (min-width: 1024px) {
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .app-name {
+        font-size: 1.6rem;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .nav-links {
+        max-width: 62%;
+        gap: 0.6rem;
+    }
+
+    .nav-links a {
+        padding: 0.7rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-links a:last-child,
+    .nav-links a:nth-last-child(2) {
+        padding: 0.7rem 1.5rem;
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .navbar {
+        padding: 1rem 4%;
+    }
+
+    .logo-container {
+        min-width: 150px;
+    }
+
+    .app-name {
+        font-size: 1.4rem;
+    }
+
+    .logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .nav-links {
+        max-width: 65%;
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .nav-links a:last-child,
+    .nav-links a:nth-last-child(2) {
+        padding: 0.65rem 1.25rem;
+    }
+}
+
+/* Mobile Large (481px - 767px) */
+@media (max-width: 767px) {
+    .navbar {
+        padding: 1rem 3%;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+        min-width: unset;
+    }
+
+    .app-name {
+        font-size: 1.5rem;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .nav-links {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+        flex: 0 1 auto;
+    }
+
+    .nav-links a:last-child,
+    .nav-links a:nth-last-child(2) {
+        padding: 0.7rem 1.4rem;
+    }
+}
+
+/* Mobile Small (320px - 480px) */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.9rem 3%;
+    }
+
+    .logo-container {
+        gap: 0.75rem;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .app-name {
+        font-size: 1.3rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.6rem;
+        padding: 0.75rem;
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        font-size: 0.95rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .nav-links a:last-child,
+    .nav-links a:nth-last-child(2) {
+        padding: 0.8rem 1rem;
+        width: 100%;
+    }
+}
+
+/* Extra Small Mobile (< 320px) */
+@media (max-width: 319px) {
+    .navbar {
+        padding: 0.8rem 2%;
+    }
+
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+
+    .app-name {
+        font-size: 1.1rem;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 0.65rem 0.8rem;
+    }
+}
+
+/* ============================================
+   SMOOTH SCROLL & PERFORMANCE
+   ============================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Performance Optimization */
+.navbar,
+.nav-links a,
+.logo,
+.logo-container {
+    will-change: transform;
+}
+
+/* Hardware Acceleration */
+.navbar::before,
+.navbar::after,
+.logo,
+.nav-links a::before,
+.nav-links a::after {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.nav-links a:focus-visible {
+    outline: 3px solid rgba(251, 133, 0, 0.9);
+    outline-offset: 4px;
+    background: rgba(251, 133, 0, 0.25);
+}
+
+.logo-container:focus-visible {
+    outline: 3px solid rgba(251, 133, 0, 0.9);
+    outline-offset: 4px;
+}
+
+/* Reduce Motion for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .navbar {
+        border-bottom: 2px solid var(--orange-accent);
+    }
+
+    .nav-links a {
+        border-width: 2px;
+    }
+}
+
+/* Dark Mode Support (if needed) */
+@media (prefers-color-scheme: dark) {
+    .navbar {
+        background: linear-gradient(135deg,
+                rgba(27, 38, 59, 0.98) 0%,
+                rgba(27, 67, 50, 0.95) 100%);
+    }
+}
+
+/* ============================================
+   NAVBAR SCROLL STATE
+   ============================================ */
+
+.navbar.scrolled {
+    padding: 0.9rem 5%;
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 0 100px rgba(251, 133, 0, 0.15) inset;
+    background: linear-gradient(135deg,
+            rgba(27, 38, 59, 0.98) 0%,
+            rgba(27, 67, 50, 0.96) 100%);
+}
+
+.navbar.scrolled .logo {
+    width: 45px;
+    height: 45px;
+}
+
+.navbar.scrolled .app-name {
+    font-size: 1.6rem;
+}
+
+/* ============================================
+   LOADING SKELETON (Optional)
+   ============================================ */
+
+.navbar.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.navbar.loading::after {
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .navbar {
+        position: relative;
+        box-shadow: none;
+        background: white;
+        border-bottom: 2px solid black;
+    }
+
+    .navbar::before,
+    .navbar::after {
+        display: none;
+    }
+
+    .nav-links a:last-child,
+    .nav-links a:nth-last-child(2) {
+        display: none;
+    }
+}

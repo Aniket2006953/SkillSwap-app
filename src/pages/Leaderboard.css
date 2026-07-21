@@ -1,0 +1,119 @@
+.leaderboard-container {
+  min-height: calc(100vh - 80px);
+  background: radial-gradient(circle at top, #1a1b3c 0%, var(--bg-dark) 70%);
+  padding: 4rem 2rem;
+  color: var(--text-main);
+  font-family: var(--font-future);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leaderboard-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.leaderboard-header h1 {
+  font-family: var(--font-brand);
+  font-size: 3.5rem;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+  margin-bottom: 1rem;
+}
+
+.leaderboard-header p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.leaderboard-list {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.leaderboard-card {
+  display: flex;
+  align-items: center;
+  background: var(--glass-panel);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.leaderboard-card:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 240, 255, 0.05);
+}
+
+.rank-badge {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--neon-cyan);
+  width: 60px;
+  text-align: center;
+  margin-right: 2rem;
+  text-shadow: 0 0 10px rgba(0,240,255,0.3);
+}
+
+.rank-1 .rank-badge { font-size: 3rem; text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+.rank-2 .rank-badge { font-size: 2.8rem; text-shadow: 0 0 15px rgba(192, 192, 192, 0.8); }
+.rank-3 .rank-badge { font-size: 2.6rem; text-shadow: 0 0 15px rgba(205, 127, 50, 0.8); }
+
+.leaderboard-skill-info {
+  flex-grow: 1;
+}
+
+.leaderboard-skill-info h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.leaderboard-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.leaderboard-category {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--neon-cyan);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.leaderboard-owner {
+  color: var(--neon-purple);
+  cursor: pointer;
+}
+.leaderboard-owner:hover {
+  text-decoration: underline;
+}
+
+.leaderboard-rating {
+  text-align: right;
+  min-width: 100px;
+}
+
+.rating-score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #FFD700;
+  margin-bottom: 0.2rem;
+}
+
+.review-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}

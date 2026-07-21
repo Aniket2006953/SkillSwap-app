@@ -1,0 +1,212 @@
+.splash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0b0c10;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+}
+
+.splash-container.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* AI Background Image */
+.splash-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: cinematic-zoom 10s ease-out forwards;
+  z-index: 0;
+}
+
+.splash-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(11, 12, 16, 0.4) 0%, rgba(11, 12, 16, 0.95) 100%);
+  z-index: 1;
+}
+
+@keyframes cinematic-zoom {
+  0% { opacity: 0; transform: scale(1.1); filter: brightness(0.2); }
+  20% { opacity: 0.8; }
+  100% { opacity: 0.8; transform: scale(1); filter: brightness(1.2); }
+}
+
+/* Ambient Background Glows */
+.splash-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0;
+  animation: glow-pulse 3.5s ease-in-out forwards;
+}
+
+.glow-1 {
+  width: 40vw;
+  height: 40vw;
+  background: rgba(56, 189, 248, 0.15); /* Sleek cyan */
+  top: -10%;
+  left: -10%;
+  animation-delay: 0.2s;
+}
+
+.glow-2 {
+  width: 50vw;
+  height: 50vw;
+  background: rgba(139, 92, 246, 0.1); /* Deep violet */
+  bottom: -20%;
+  right: -10%;
+  animation-delay: 0.5s;
+}
+
+@keyframes glow-pulse {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* Main Content Wrapper */
+.splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Logo Reveal */
+.splash-title {
+  font-size: 5rem;
+  font-weight: 800;
+  color: transparent;
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: -2px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: title-reveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1s;
+}
+
+/* Glassmorphic/Neon glitch effect on logo */
+.splash-title::before {
+  content: attr(data-text);
+  position: absolute;
+  left: -2px;
+  text-shadow: 2px 0 #38bdf8;
+  top: 0;
+  color: transparent;
+  background: none;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch-anim 4s infinite linear alternate-reverse;
+  animation-delay: 2s;
+  opacity: 0;
+}
+
+@keyframes title-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(4px, 9999px, 86px, 0); opacity: 1; }
+  5% { clip: rect(61px, 9999px, 12px, 0); }
+  10% { clip: rect(22px, 9999px, 114px, 0); }
+  15% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Subtitle */
+.splash-subtitle {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #94a3b8;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: subtitle-fade 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 2.5s;
+}
+
+@keyframes subtitle-fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Progress / Loading Bar */
+.splash-progress-container {
+  margin-top: 3rem;
+  width: 250px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fade-in 1s ease forwards;
+  animation-delay: 3.5s;
+}
+
+.splash-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6, #38bdf8);
+  background-size: 200% 100%;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+  animation: progress-fill 2.5s cubic-bezier(0.65, 0, 0.35, 1) forwards, gradient-shift 2s infinite linear;
+  animation-delay: 3.8s;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+@keyframes fade-in {
+  to { opacity: 1; }
+}
+
+@keyframes progress-fill {
+  0% { width: 0%; }
+  70% { width: 80%; }
+  100% { width: 100%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .splash-title {
+    font-size: 3.5rem;
+  }
+  .splash-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+}
