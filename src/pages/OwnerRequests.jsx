@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import API from "../api"
 import { motion } from "framer-motion"
 import PageWrapper from "../components/PageWrapper"
 import "./OwnerRequests.css"
@@ -8,7 +8,6 @@ import "./OwnerRequests.css"
 function OwnerRequests() {
 
   const [requests, setRequests] = useState([])
-  const token = localStorage.getItem("access")
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -17,14 +16,7 @@ function OwnerRequests() {
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:8000/api/skills/owner-requests/",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      const res = await API.get("skills/owner-requests/")
       setRequests(res.data.results)
     } catch (err) {
       console.log(err)
@@ -40,15 +32,7 @@ function OwnerRequests() {
         payload.scheduled_time = scheduledTimes[id]
       }
       
-      await axios.patch(
-        `http://localhost:8000/api/skills/request/${id}/`,
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      await API.patch(`skills/request/${id}/`, payload)
       alert("Updated Successfully")
       fetchRequests()
     } catch (err) {

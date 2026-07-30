@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import API from "../api"
 import { motion } from "framer-motion"
 import PageWrapper from "../components/PageWrapper"
 import "./MyRequests.css"
@@ -8,19 +8,11 @@ import "./MyRequests.css"
 function MyRequests() {
 
   const [requests, setRequests] = useState([])
-  const token = localStorage.getItem("access")
   const navigate = useNavigate()
 
   const fetchRequests = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:8000/api/skills/my-requests/",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
-      )
+      const res = await API.get("skills/my-requests/")
       setRequests(res.data.results || [])
     } catch (err) {
       console.log(err)
