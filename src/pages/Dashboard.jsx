@@ -283,7 +283,7 @@ function Dashboard() {
               skills.map((skill) => (
                 <motion.div key={skill.id} whileHover={{ y: -8, scale: 1.02 }} className="dash-skill-card">
                   <div className="dash-skill-media">
-                    {skill.image ? <img src={skill.image.startsWith('http') ? skill.image : `http://localhost:8000${skill.image}`} alt={skill.title} /> : <div className="dash-media-placeholder">No Image</div>}
+                    {skill.image ? <img src={skill.image.startsWith('http') ? skill.image : `https://skillswap-app-wj2a.onrender.com${skill.image}`} alt={skill.title} /> : <div className="dash-media-placeholder">No Image</div>}
                     <div className="dash-skill-category">{skill.category} • {skill.level}</div>
                   </div>
                   <div className="dash-skill-content">

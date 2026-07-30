@@ -144,7 +144,7 @@ function AllSkills() {
                 <div className="skill-image-container">
                   {skill.image ? (
                     <img 
-                      src={skill.image.startsWith('http') ? skill.image : `http://localhost:8000${skill.image}`} 
+                      src={skill.image.startsWith('http') ? skill.image : `https://skillswap-app-wj2a.onrender.com${skill.image}`} 
                       alt={skill.title} 
                       className="skill-image" 
                     />

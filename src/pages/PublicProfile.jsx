@@ -238,14 +238,14 @@ function PublicProfile() {
               <motion.div className="prof-content-grid" variants={staggerContainer} initial="hidden" animate="show">
                 {activeTab === 'posts' && userPosts.map(skill => (
                   <motion.div key={skill.id} variants={itemVariant} className="prof-grid-item" onClick={() => navigate(`/skills/${skill.id}`)}>
-                    <img src={skill.image.startsWith('http') ? skill.image : `http://localhost:8000${skill.image}`} alt={skill.title} />
+                    <img src={skill.image.startsWith('http') ? skill.image : `https://skillswap-app-wj2a.onrender.com${skill.image}`} alt={skill.title} />
                     <div className="prof-item-overlay"><span>{skill.title}</span></div>
                   </motion.div>
                 ))}
 
                 {activeTab === 'showcase' && userShowcases.map(skill => (
                   <motion.div key={skill.id} variants={itemVariant} className="prof-grid-item" onClick={() => navigate(`/skills/${skill.id}`)}>
-                    <video src={skill.video.startsWith('http') ? skill.video : `http://localhost:8000${skill.video}`} muted onMouseEnter={e => e.target.play()} onMouseLeave={e => {e.target.pause(); e.target.currentTime = 0;}} />
+                    <video src={skill.video.startsWith('http') ? skill.video : `https://skillswap-app-wj2a.onrender.com${skill.video}`} muted onMouseEnter={e => e.target.play()} onMouseLeave={e => {e.target.pause(); e.target.currentTime = 0;}} />
                     <div className="prof-item-overlay"><span>{skill.title}</span></div>
                   </motion.div>
                 ))}

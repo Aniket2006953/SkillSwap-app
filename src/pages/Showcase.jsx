@@ -67,7 +67,7 @@ const Showcase = () => {
         
         {showcases.map((skill, index) => {
           // ensure absolute URL for the video
-          const videoSrc = skill.video.startsWith('http') ? skill.video : `http://localhost:8000${skill.video}`;
+          const videoSrc = skill.video.startsWith('http') ? skill.video : `https://skillswap-app-wj2a.onrender.com${skill.video}`;
 
           return (
             <div className="reel-item" key={skill.id || skill._id}>

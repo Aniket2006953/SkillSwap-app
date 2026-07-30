@@ -122,7 +122,7 @@ function SkillDetail() {
 
           {skill.image && (
             <motion.img
-              src={skill.image.startsWith('http') ? skill.image : `http://localhost:8000${skill.image}`}
+              src={skill.image.startsWith('http') ? skill.image : `https://skillswap-app-wj2a.onrender.com${skill.image}`}
               alt={skill.title}
               className="skill-detail-img"
               whileHover={{ scale: 1.02 }}
