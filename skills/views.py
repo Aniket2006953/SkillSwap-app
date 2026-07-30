@@ -40,15 +40,27 @@ class SkillDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class AllSkillsView(generics.ListAPIView):
-    queryset = Skill.objects.all()
     serializer_class = SkillSerializer
-    pagination_class = None
     filter_backends = [DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter]
     filterset_fields = ['category', 'city', 'level']
     search_fields = ['title', 'description']
     ordering_fields = ['created_at']
     ordering = ['-created_at']  # Default ordering by created_at descending
-    pagination_class = None
+    
+    def get_queryset(self):
+        from django.db.models import Avg, Prefetch
+        qs = Skill.objects.annotate(avg_rating=Avg('reviews__rating'))
+        
+        user = self.request.user
+        if user.is_authenticated:
+            qs = qs.prefetch_related(
+                Prefetch(
+                    'skillrequest_set',
+                    queryset=SkillRequest.objects.filter(requester=user),
+                    to_attr='user_requests'
+                )
+            )
+        return qs
     
 
 
