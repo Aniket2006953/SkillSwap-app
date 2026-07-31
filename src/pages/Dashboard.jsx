@@ -213,9 +213,14 @@ function Dashboard() {
                             setFormData({ ...formData, video: null });
                             return;
                           }
+                          // Fallback timer for mobile browsers where onloadedmetadata might not fire
+                          let metadataLoaded = false;
                           const video = document.createElement('video');
                           video.preload = 'metadata';
-                          video.onloadedmetadata = () => {
+                          
+                          const handleSuccess = () => {
+                            if (metadataLoaded) return;
+                            metadataLoaded = true;
                             window.URL.revokeObjectURL(video.src);
                             if (video.duration > 60) {
                               alert("Video duration must be 1 minute or less.");
@@ -225,7 +230,24 @@ function Dashboard() {
                               setFormData({ ...formData, video: file });
                             }
                           };
+
+                          video.onloadedmetadata = handleSuccess;
                           video.src = URL.createObjectURL(file);
+                          
+                          // Force load for iOS
+                          video.load();
+
+                          // If metadata doesn't load within 1.5 seconds (e.g. mobile Safari blocking it), 
+                          // safely accept the file anyway rather than silently dropping it.
+                          setTimeout(() => {
+                            if (!metadataLoaded) {
+                              metadataLoaded = true;
+                              window.URL.revokeObjectURL(video.src);
+                              setFormData({ ...formData, video: file });
+                              console.warn("Video metadata load timed out, accepting file bypass.");
+                            }
+                          }, 1500);
+
                         } else {
                           setFormData({ ...formData, video: null });
                         }
