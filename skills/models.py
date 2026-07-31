@@ -19,7 +19,17 @@ class Skill(models.Model):
     )
     city = models.CharField(max_length=50)
     image=models.ImageField(upload_to='skills/', blank=True, null=True)
-    video=models.FileField(upload_to='skills/videos/', blank=True, null=True)
+
+    # Use a callable for storage to avoid crashing if cloudinary is missing at import time
+    def get_video_storage():
+        import os
+        from django.core.files.storage import default_storage
+        if os.environ.get('CLOUDINARY_CLOUD_NAME'):
+            from cloudinary_storage.storage import VideoMediaCloudinaryStorage
+            return VideoMediaCloudinaryStorage()
+        return default_storage
+
+    video=models.FileField(upload_to='skills/videos/', blank=True, null=True, storage=get_video_storage)
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
