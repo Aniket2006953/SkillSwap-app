@@ -512,3 +512,9 @@
   .dash-viz-row { grid-template-columns: 1fr; }
   .dash-input-group { grid-template-columns: 1fr; }
 }
+ @media (max-width: 768px) {
+  .dash-container { padding: 20px 15px; }
+  .dash-title { font-size: 2rem; }
+  .dash-form-card { padding: 20px; }
+  .dash-stats-grid { grid-template-columns: 1fr; }
+}

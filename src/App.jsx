@@ -25,6 +25,8 @@ import Notifications from "./pages/Notifications"
 import Workspace from "./pages/Workspace"
 import SplashIntro from "./components/SplashIntro"
 
+import BottomNav from "./components/BottomNav"
+
 const isAuthenticated =localStorage.getItem("access") ;
 function App() {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
@@ -35,14 +37,10 @@ function App() {
   return (
     <>
       {showSplash && <SplashIntro onComplete={() => setShowSplash(false)} />}
-      <div style={{ display: 'flex', width: '100%', minHeight: '100vh', overflowX: 'hidden' }}>
+      <div className="app-container">
       <Sidebar isExpanded={isSidebarExpanded} setIsExpanded={setIsSidebarExpanded} />
-      <div style={{ 
-        flexGrow: 1, 
-        marginLeft: isSidebarExpanded ? '220px' : '72px', 
-        width: isSidebarExpanded ? 'calc(100% - 220px)' : 'calc(100% - 72px)',
-        transition: 'margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
-      }}>
+      <BottomNav />
+      <div className={`main-content ${isSidebarExpanded ? 'sidebar-expanded' : 'sidebar-collapsed'}`}>
         <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
