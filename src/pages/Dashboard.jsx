@@ -203,10 +203,16 @@ function Dashboard() {
                     </label>
                     <label className="dash-file-upload">
                       <span>🎥 Showcase Video</span>
-                      <small>{formData.video ? formData.video.name : "Upload a 15-30s highlight reel (Max 1 min)"}</small>
+                      <small>{formData.video ? formData.video.name : "Upload a 15-30s highlight reel (Max 1 min, 15MB)"}</small>
                       <input type="file" name="video" accept="video/*" onChange={(e) => {
                         const file = e.target.files[0];
                         if (file) {
+                          if (file.size > 15 * 1024 * 1024) {
+                            alert("Video file size must be less than 15MB.");
+                            e.target.value = "";
+                            setFormData({ ...formData, video: null });
+                            return;
+                          }
                           const video = document.createElement('video');
                           video.preload = 'metadata';
                           video.onloadedmetadata = () => {
