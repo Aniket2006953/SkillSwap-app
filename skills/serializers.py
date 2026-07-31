@@ -18,20 +18,11 @@ class SkillSerializer(serializers.ModelSerializer):
     def get_average_rating(self, obj):
         if hasattr(obj, 'avg_rating'):
             return round(obj.avg_rating, 1) if obj.avg_rating else 0
-        reviews = Review.objects.filter(skill=obj)
-        if reviews.exists():
-            total = sum([review.rating for review in reviews])
-            return round(total / reviews.count(), 1)
         return 0
 
     def get_request_status(self, obj):
         if hasattr(obj, 'user_requests'):
             return obj.user_requests[0].status if obj.user_requests else None
-            
-        user = self.context.get('request').user if 'request' in self.context else None
-        if user and user.is_authenticated:
-            request_obj = SkillRequest.objects.filter(skill=obj, requester=user).first()
-            return request_obj.status if request_obj else None
         return None
 
 

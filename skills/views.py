@@ -13,7 +13,10 @@ class SkillListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Skill.objects.filter(owner=self.request.user)
+        from django.db.models import Avg, Prefetch
+        qs = Skill.objects.filter(owner=self.request.user).annotate(avg_rating=Avg('reviews__rating'))
+        # Prefetch not needed for user_requests since users can't request their own skills
+        return qs
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -25,7 +28,22 @@ class SkillListCreateView(generics.ListCreateAPIView):
 class SkillDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = SkillSerializer
     permission_classes = [IsAuthenticated]
-    queryset = Skill.objects.all()
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        from django.db.models import Avg, Prefetch
+        qs = Skill.objects.annotate(avg_rating=Avg('reviews__rating'))
+        
+        user = self.request.user
+        if user and user.is_authenticated:
+            qs = qs.prefetch_related(
+                Prefetch(
+                    'skillrequest_set',
+                    queryset=SkillRequest.objects.filter(requester=user),
+                    to_attr='user_requests'
+                )
+            )
+        return qs
 
     def perform_update(self, serializer):
         if serializer.instance.owner != self.request.user:
