@@ -203,8 +203,27 @@ function Dashboard() {
                     </label>
                     <label className="dash-file-upload">
                       <span>🎥 Showcase Video</span>
-                      <small>{formData.video ? formData.video.name : "Upload a 15-30s highlight reel"}</small>
-                      <input type="file" name="video" accept="video/*" onChange={(e) => setFormData({ ...formData, video: e.target.files[0] })} />
+                      <small>{formData.video ? formData.video.name : "Upload a 15-30s highlight reel (Max 1 min)"}</small>
+                      <input type="file" name="video" accept="video/*" onChange={(e) => {
+                        const file = e.target.files[0];
+                        if (file) {
+                          const video = document.createElement('video');
+                          video.preload = 'metadata';
+                          video.onloadedmetadata = () => {
+                            window.URL.revokeObjectURL(video.src);
+                            if (video.duration > 60) {
+                              alert("Video duration must be 1 minute or less.");
+                              e.target.value = "";
+                              setFormData({ ...formData, video: null });
+                            } else {
+                              setFormData({ ...formData, video: file });
+                            }
+                          };
+                          video.src = URL.createObjectURL(file);
+                        } else {
+                          setFormData({ ...formData, video: null });
+                        }
+                      }} />
                     </label>
                   </div>
 
